@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // CSPIT Institute object
+    let CSPIT = {
+      departments: ['CE', 'IT', 'CS', 'EC', 'EE', 'CL', 'ME'],
+      yearOfEstablishment: 2000,
+      location: 'Changa',
+      getDetails: function () {
+        console.log('Year of Establishment: ' + CSPIT.yearOfEstablishment);
+        console.log('Location: ' + CSPIT.location);
+        console.log('Departments: ' + CSPIT.departments);
+      }
+    };
+    
+    // Prototype function for CE department
+    CSPIT.CE = function () {
+      this.totalStudents = 250;
+      this.totalFaculty = 30;
+    };
+    
+    // Retrieve CSPIT details
+    console.log('CSPIT Institute Details:');
+    console.log('---------------');
+    CSPIT.getDetails();
+    
+    // Retrieve CE department details
+    console.log('\nCE Department');
+    console.log('-------------');
+    
+    // Loop through Records of CE using for...in loop 
+    let ce = new CSPIT.CE();
+    for (let prop in ce) {
+      console.log(prop + ': ' + ce[prop]);
+    }
+    
+    // Loop through departments using for...of loop
+    console.log('\nAll Departments');
+    console.log('---------------');
+    for (let dept of CSPIT.departments) {
+      console.log(dept);
+    }
+    </script>
+</body>
+</html>
