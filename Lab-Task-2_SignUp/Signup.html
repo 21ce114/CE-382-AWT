@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Social Media Signup</title>
+</head>
+<body>
+  <h1>Social Media Signup</h1>
+  <table>
+  <form id="signupForm" onsubmit="validateForm(event)">
+    <tr><div>
+      <td><label for="fullName">Full Name:</label></td>
+      <td><input type="text" id="fullName"></td>
+      <td><span id="fullNameError" class="error"></span></td>
+    </div></tr>
+    <tr><div>
+      <td><label for="username">Username:</label></td>
+      <td><input type="text" id="username"></td>
+      <td><span id="usernameError" class="error"></span></td>
+    </div></tr>
+    <tr><div>
+      <td><label for="password">Password:</label></td>
+      <td><input type="password" id="password"></td>
+      <td><span id="passwordError" class="error"></span></td>
+    </div></tr>
+    <tr><div>
+      <td><label for="confirmPassword">Confirm Password:</label></td>
+      <td><input type="password" id="confirmPassword"></td>
+      <td><span id="confirmPasswordError" class="error"></span></td>
+    </div></tr>
+    <tr><div>
+      <td><label>Gender:</label></td>
+      <td><input type="radio" name="gender" value="male"> Male
+      <input type="radio" name="gender" value="female"> Female</td>
+      <td><span id="genderError" class="error"></span></td>
+    </div></tr>
+    <tr><div>
+      <td><label for="phone">Phone No:</label></td>
+      <td><input type="text" id="phone"></td>
+      <td><span id="phoneError" class="error"></span></td>
+    </div></tr>
+    <tr><div>
+      <td><label for="email">Email:</label></td>
+      <td><input type="email" id="email"></td>
+      <td><span id="emailError" class="error"></span></td>
+    </div></tr>
+    <tr><div>
+      <td><label for="state">State:</label></td>
+      <td><select id="state">
+        <option value="">Select State</option>
+        <option value="state1">Gujarat</option>
+        <option value="state2">Harayana</option>
+        <option value="state3">MP</option>
+        <option value="state3">UP</option>
+      </select></td>
+      <td><span id="stateError" class="error"></span></td>
+    </div></tr>
+</table>
+    <div>
+      <label for="agreement">
+        <input type="checkbox" id="agreement"> I agree to the terms and conditions.
+      </label>
+      <span id="agreementError" class="error"></span>
+    </div>
+    <button type="submit">Register</button>
+  </form>
+  <script src="./Signup.js"></script>
+</body>
+</html>
