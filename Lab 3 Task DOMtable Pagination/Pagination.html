@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pagination</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .pagination {
+      display: inline-block;
+    }
+
+    .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+      margin: 0 4px;
+    }
+
+    .pagination a.active {
+      background-color: #4CAF50;
+      color: white;
+      border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h2>Add Record</h2>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+    <label for="age">Age:</label>
+    <input type="text" id="age">
+    <label for="city">City:</label>
+    <input type="text" id="city">
+    <button id="add-btn">Add</button>
+  </div>
+
+  <h2>Records</h2>
+  <table id="records-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="pagination-container" class="pagination"></div>
+
+  <script>
+    $(document).ready(function() {
+      var records = []; 
+      var itemsPerPage = 5; 
+      var currentPage = 1; 
+
+
+      function displayRecords() {
+        var startIndex = (currentPage - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+        var currentPageRecords = records.slice(startIndex, endIndex);
+
+    
+        $("#records-table tbody").empty();
+
+  
+        currentPageRecords.forEach(function(record) {
+          $("#records-table tbody").append("<tr><td>" + record.name + "</td><td>" + record.age + "</td><td>" + record.city + "</td></tr>");
+        });
+      }
+
+
+      function updatePagination() {
+        var totalPages = Math.ceil(records.length / itemsPerPage);
+        var paginationHTML = "";
+
+        for (var i = 1; i <= totalPages; i++) {
+          paginationHTML += "<a href='#' class='page-link' data-page='" + i + "'>" + i + "</a>";
+        }
+
+        $("#pagination-container").html(paginationHTML);
+
+        $(".page-link").click(function() {
+          currentPage = parseInt($(this).data("page"));
+          displayRecords();
+          $(this).addClass("active").siblings().removeClass("active");
+        });
+      }
+
+
+      $("#add-btn").click(function() {
+        var name = $("#name").val();
+        var age = $("#age").val();
+        var city = $("#city").val();
+
+        if (name && age && city) {
+          var record = { name: name, age: age, city: city };
+          records.push(record);
+          displayRecords();
+          updatePagination();
+
+          $("#name").val("");
+          $("#age").val("");
+          $("#city").val("");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
